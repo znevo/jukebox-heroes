@@ -1,1 +1,99 @@
+$tablet: 600px;
+$navbar-breakpoint: $tablet;
+$hero-button-bg: rgba(255,255,255,0.3);
+$tabs-link-color: white;
+$tabs-link-hover-color: white;
+$tabs-toggle-link-active-background-color: $hero-button-bg;
+$tabs-toggle-link-hover-background-color: $hero-button-bg;
+$tabs-toggle-link-border-color: white;
+$tabs-toggle-link-active-border-color: white;
+$tabs-toggle-link-hover-border-color: white;
+
 @import '~bulma/bulma.sass';
+
+html, body {
+    min-height: 100vh;
+}
+
+body {
+  background-image: linear-gradient(-134deg, #C182DC 0%, #FB7C62 94%, #FF7C5B 100%);
+  background-attachment: fixed;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+}
+
+.is-hero-button {
+  text-decoration: none !important;
+}
+
+.is-hero-button,
+.is-mixed-button {
+  &:hover,
+  &.is-hovered,
+  &:focus,
+  &.is-focused,
+  &.router-link-exact-active {
+    background-color: $hero-button-bg !important;
+    color: white !important;
+  }
+}
+
+.is-gradient-button:hover,
+.is-gradient-button.is-hovered,
+.is-gradient-button:focus,
+.is-gradient-button.is-focused,
+.is-gradient-button {
+  border: 0;
+  background-image: linear-gradient(-134deg, #C182DC 0%, #FB7C62 94%, #FF7C5B 100%);
+  color: white;
+}
+
+@include until($tablet) {
+  .is-mixed-button:hover,
+  .is-mixed-button.is-hovered,
+  .is-mixed-button:focus,
+  .is-mixed-button.is-focused,
+  .is-mixed-button {
+    border: 0;
+    background-image: linear-gradient(-134deg, #C182DC 0%, #FB7C62 94%, #FF7C5B 100%);
+    color: white;
+  }
+}
+
+nav, .hero-foot {
+  a:not(.button) {
+    color: white !important;
+  }
+
+  a:hover:not(.button) {
+      text-decoration: underline;
+  }
+
+  a.router-link-exact-active:not(.button) {
+    text-decoration: underline;
+  }
+
+  @include until($tablet) {
+    .navbar-menu a:not(.button) {
+      color: black !important;
+    }
+  }
+}
+
+.hero-foot {
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+}
+
+.navbar-burger {
+    width: 5rem;
+    height: 5rem;
+}
