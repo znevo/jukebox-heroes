@@ -16,7 +16,17 @@
             </p>
           </div>
           <div class="block pt-4">
-            <router-link to="/jukebox" class="button is-rounded is-light is-outlined is-medium is-hero-button">Rock On</router-link>
+            <template v-if="! $metamask.installed">
+              <a href="https://metamask.io/" target="_blank" class="button is-rounded is-light is-outlined is-medium is-hero-button">Install MetaMask</a>
+            </template>
+
+            <template v-if="$metamask.installed && ! $metamask.user">
+              <button class="button is-rounded is-light is-outlined is-medium is-hero-button" @click="connect">Rock On</button>
+            </template>
+
+            <template v-if="$metamask.user && ! ($metamask.ready('rinkeby') || $metamask.ready('hardhat'))">
+              <button class="button is-rounded is-light is-outlined is-medium is-hero-button" @click="chain">Connect To Rinkeby</button>
+            </template>
           </div>
         </div>
       </div>
@@ -34,5 +44,13 @@
 <script>
 export default {
   name: 'HomeView',
+  methods: {
+    connect() {
+      this.$metamask.connect();
+    },
+    chain() {
+      this.$metamask.chain('rinkeby');
+    }
+  }
 }
 </script>

@@ -11,6 +11,7 @@ Vue.config.productionTip = false
 import Metamask from './library/MetaMask';
 const metamask = new Metamask();
 window.metamask = metamask;
+Vue.prototype.$metamask = metamask;
 
 metamask.on('EVENT_ACCOUNT_CONNECTED',    () => { window.location.reload() });
 metamask.on('EVENT_ACCOUNT_SWITCHED',     () => { window.location.reload() });
