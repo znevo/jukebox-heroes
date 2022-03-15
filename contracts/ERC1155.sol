@@ -30,11 +30,9 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
     string private _uri;
 
     /**
-     * @dev See {_setURI}.
+     * @dev Inheriting contract must set the URI in an initializer.
      */
-    constructor(string memory uri_) {
-        _setURI(uri_);
-    }
+    constructor() {}
 
     /**
      * @dev See {IERC165-supportsInterface}.
