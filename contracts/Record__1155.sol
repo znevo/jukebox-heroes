@@ -11,19 +11,30 @@ contract Record__1155 is ERC1155, Initializable {
 
     string public name;
     string public symbol;
+    string public _uri;
+    uint public _price;
 
-    function initialize(string memory _name, string memory _symbol, string memory uri) public initializer {
-        name = _name;
-        symbol = _symbol;
-        _setURI(uri);
+    function initialize(string memory name_, string memory symbol_, string memory uri_, uint price) public initializer {
+        name = name_;
+        symbol = symbol_;
+        _setURI(uri_);
+        _price = price;
     }
 
-    function mint() public returns (uint256) {
+    function mint(address to) public returns (uint256) {
         _tokenIds.increment();
 
         uint256 tokenId = _tokenIds.current();
-        _mint(msg.sender, tokenId, 1, '');
+        _mint(to, tokenId, 1, '');
 
         return tokenId;
+    }
+
+    function _setURI(string memory newuri) internal override {
+        _uri = newuri;
+    }
+
+    function uri(uint256) public view override returns (string memory) {
+        return _uri;
     }
 }
