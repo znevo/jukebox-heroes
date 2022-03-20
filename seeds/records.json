@@ -1,0 +1,189 @@
+[
+  {
+    "metadata": {
+        "name": "Terrain",
+        "description": "Key",
+        "animation_url": "https://521dimensions.com/songs/Terrain-pglost.mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/key.jpg"
+    },
+    "name": "pg.lost",
+    "symbol": "PGLOST",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+        "name": "Vorel",
+        "description": "Guidance",
+        "animation_url": "https://521dimensions.com/songs/Vorel-RussianCircles.mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/guidance.jpg"
+    },
+    "name": "Russian Circles",
+    "symbol": "RUSSIANCIRCLES",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+        "name": "Intro / Sweet Glory",
+        "description": "Die Digital",
+        "animation_url": "https://521dimensions.com/songs/IntroSweetGlory-Jimkata.mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/die-digital.jpg"
+    },
+    "name": "Jimkata",
+    "symbol": "JIMKATA",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+        "name": "Offcut #6",
+        "description": "We Are But Hunks of Wood Remixes",
+        "animation_url": "https://521dimensions.com/songs/Offcut6-LittlePeople.mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/we-are-but-hunks-of-wood.jpg"
+    },
+    "name": "Little People",
+    "symbol": "LITTLEPEOPLE",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+        "name": "Dusk To Dawn",
+        "description": "Dusk To Dawn",
+        "animation_url": "https://521dimensions.com/songs/DuskToDawn-Emancipator.mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/from-dusk-to-dawn.jpg"
+    },
+    "name": "Emancipator",
+    "symbol": "EMANCIPATOR",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+        "name": "Anthem",
+        "description": "Soon It Will Be Cold Enough",
+        "animation_url": "https://521dimensions.com/songs/Anthem-Emancipator.mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/soon-it-will-be-cold-enough.jpg"
+    },
+    "name": "Emancipator",
+    "symbol": "EMANCIPATOR",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+        "name": "Risin' High (feat Raashan)",
+        "description": "We Are to Answer",
+        "animation_url": "https://521dimensions.com/songs/Ancient Astronauts - Risin' High (feat Raashan Ahmad).mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/we-are-to-answer.jpg"
+    },
+    "name": "Ancient Astronauts",
+    "symbol": "ANCIENTASTRONAUTS",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+        "name": "The Gun",
+        "description": "Ask The Dust",
+        "animation_url": "https://521dimensions.com/songs/08 The Gun.mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/ask-the-dust.jpg"
+    },
+    "name": "Lorn",
+    "symbol": "LORN",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+        "name": "Anvil",
+        "description": "Anvil",
+        "animation_url": "https://521dimensions.com/songs/LORN - ANVIL.mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/anvil.jpg"
+    },
+    "name": "Lorn",
+    "symbol": "LORN",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+        "name": "I Came Running",
+        "description": "We Are to Answer",
+        "animation_url": "https://521dimensions.com/songs/ICameRunning-AncientAstronauts.mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/we-are-to-answer.jpg"
+    },
+    "name": "Ancient Astronauts",
+    "symbol": "ANCIENTASTRONAUTS",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+        "name": "First Snow",
+        "description": "Soon It Will Be Cold Enough",
+        "animation_url": "https://521dimensions.com/songs/FirstSnow-Emancipator.mp3",
+        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/soon-it-will-be-cold-enough.jpg"
+    },
+    "name": "Emancipator",
+    "symbol": "EMANCIPATOR",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  }
+]
