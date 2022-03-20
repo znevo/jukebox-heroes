@@ -8,6 +8,9 @@ import './css/main.scss';
 
 Vue.config.productionTip = false
 
+import Amplitude from 'amplitudejs';
+Vue.prototype.$amplitude = Amplitude;
+
 import Metamask from './library/MetaMask';
 const metamask = new Metamask();
 window.metamask = metamask;
