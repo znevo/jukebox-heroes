@@ -26,13 +26,13 @@
                 <p class="title is-5">{{ record.artist }}</p>
                 <p class="subtitle is-6">{{ record.name }}</p>
                 <div class="buttons">
-                  <button class="button is-primary is-light is-small" @click="mint(record, '__721')" :disabled="record.minted == record.supply">
+                  <button class="button is-primary is-light is-small" @click="mint(record, '__721', record.ltdPrice)" :disabled="record.minted == record.supply">
                     <span class="icon is-small">
                      <i class="fa-solid fa-heart"></i>
                     </span>
                     <span>Mint</span>
                   </button>
-                  <button class="button is-success is-light is-small" @click="mint(record, '__1155')">
+                  <button class="button is-success is-light is-small" @click="mint(record, '__1155', record.price)">
                     <span class="icon is-small">
                       <i class="fa-solid fa-play"></i>
                     </span>
@@ -107,11 +107,13 @@ export default {
     this.$store.commit('setCatalog', this.catalog);
   },
   methods: {
-    async mint(record, type) {
+    async mint(record, type, price) {
       const provider = new ethers.providers.Web3Provider(this.$metamask.provider);
       const signer = await provider.getSigner();
       const jukebox = new ethers.Contract(this.$store.state.jukeboxAddress, Jukebox.abi, signer);
-      const mintTx = await jukebox.mintRecord(record[type]);
+      const mintTx = await jukebox.mintRecord(record[type], {
+        value: ethers.utils.parseUnits(price.toString(), 'wei')
+      });
       await mintTx.wait();
       this.play(record);
     },

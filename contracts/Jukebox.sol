@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/proxy/Clones.sol";
 
 interface IRecord {
-    function mint(address to) external returns (uint256);
+    function mint(address to, uint price) external returns (uint256);
 }
 
 contract Jukebox is Ownable {
@@ -16,6 +16,7 @@ contract Jukebox is Ownable {
     address[] public catalog__1155;
 
     Record[] public catalog;
+    mapping(address => uint) public recordIndex;
 
     struct Record {
         address __721;
@@ -24,6 +25,8 @@ contract Jukebox is Ownable {
         uint charityRoyalty;
         uint mintersRoyalty;
         uint jukeboxRoyalty;
+        uint revenue__721;
+        uint revenue__1155;
     }
 
     event RecordPressed__721(address record);
@@ -85,8 +88,13 @@ contract Jukebox is Ownable {
             charity: charity,
             charityRoyalty: charityRoyalty,
             mintersRoyalty: mintersRoyalty,
-            jukeboxRoyalty: jukeboxRoyalty
+            jukeboxRoyalty: jukeboxRoyalty,
+            revenue__721: 0,
+            revenue__1155: 0
         }));
+
+        recordIndex[address__721] = catalog.length - 1;
+        recordIndex[address__1155] = catalog.length - 1;
 
         emit RecordPressed(address__721, address__1155);
     }
@@ -95,7 +103,19 @@ contract Jukebox is Ownable {
         return catalog;
     }
 
-    function mintRecord(address recordAddr) external {
-        IRecord(recordAddr).mint(msg.sender);
+    function getRecord(address recordAddr) public view returns(Record memory) {
+        return catalog[recordIndex[recordAddr]];
+    }
+
+    function mintRecord(address recordAddr) external payable {
+        if ( recordAddr == catalog[recordIndex[recordAddr]].__721 ) {
+            catalog[recordIndex[recordAddr]].revenue__721 += msg.value;
+        } else if ( recordAddr == catalog[recordIndex[recordAddr]].__1155 ) {
+            catalog[recordIndex[recordAddr]].revenue__1155 += msg.value;
+        } else {
+            revert('Record not found!');
+        }
+
+        IRecord(recordAddr).mint(msg.sender, msg.value);
     }
 }

@@ -21,7 +21,9 @@ contract Record__1155 is ERC1155, Initializable {
         _price = price;
     }
 
-    function mint(address to) public returns (uint256) {
+    function mint(address to, uint price) public returns (uint256) {
+        require(price >= _price, 'The minimum price was not met!');
+
         _tokenIds.increment();
 
         uint256 tokenId = _tokenIds.current();

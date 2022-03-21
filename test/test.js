@@ -59,7 +59,7 @@ describe("Jukebox", function () {
       it("should mint NFTs", async function () {
         const [signer] = await ethers.getSigners();
         const clone__721 = await hre.ethers.getContractAt("Record__721", cloneAddr__721);
-        const mintTx__721 = await clone__721.mint(signer.address);
+        const mintTx__721 = await clone__721.mint(signer.address, ltdPrice);
         await mintTx__721.wait();
         debug && console.log("Record__721 clone minted an NFT!");
       });
@@ -76,7 +76,7 @@ describe("Jukebox", function () {
       it("should mint NFTs", async function () {
         const [signer] = await ethers.getSigners();
         const clone__1155 = await hre.ethers.getContractAt("Record__1155", cloneAddr__1155);
-        const mintTx__1155 = await clone__1155.mint(signer.address);
+        const mintTx__1155 = await clone__1155.mint(signer.address, price);
         await mintTx__1155.wait();
         debug && console.log("Record__1155 clone minted an NFT!");
       });
@@ -115,12 +115,33 @@ describe("Jukebox", function () {
     expect(catalog[0]['__1155']).to.be.properAddress;
   });
 
+  it ("should locate records in the catalog", async function() {
+    const pressTx = await jukebox.pressRecord(
+      name,
+      symbol,
+      uri,
+      ltdSupply,
+      ltdPrice,
+      price,
+      charity,
+      100,
+      mintersRoyalty,
+      jukeboxRoyalty
+    );
+    const receipt = await pressTx.wait();
+    const [recordAddr__721, recordAddr__1155] = receipt.events.find(x => x.event === 'RecordPressed').args;
+    const recordIndex = await jukebox.recordIndex(recordAddr__721);
+    const foundRecord = await jukebox.catalog(recordIndex);
+    const foundRoyalty = parseInt(foundRecord['charityRoyalty']);
+    expect(foundRoyalty).to.equal(100);
+  });
+
   it ("should mint limited edition records", async function() {
     const [signer] = await ethers.getSigners();
     const catalog = await jukebox.getCatalog();
 
     const __721 = new ethers.Contract(catalog[0]['__721'], Record__721.abi, signer);
-    const mintTx__721 = await jukebox.mintRecord(catalog[0]['__721']);
+    const mintTx__721 = await jukebox.mintRecord(catalog[0]['__721'], { value: ltdPrice });
     const receipt__721 = await mintTx__721.wait();
     const balance__721 = parseInt(await __721.balanceOf(signer.address));
     expect(balance__721).to.equal(1);
@@ -135,9 +156,21 @@ describe("Jukebox", function () {
     const catalog = await jukebox.getCatalog();
 
     const __1155 = new ethers.Contract(catalog[0]['__1155'], Record__1155.abi, signer);
-    const mintTx__1155 = await jukebox.mintRecord(catalog[0]['__1155']);
+    const mintTx__1155 = await jukebox.mintRecord(catalog[0]['__1155'], { value: price });
     const receipt__1155 = await mintTx__1155.wait();
     const balance__1155 = await __1155.balanceOf(signer.address, 1);
     expect(balance__1155).to.equal(1);
+  });
+
+  it ("should store jukebox revenue on the contract", async function() {
+    const balance = await ethers.provider.getBalance(jukebox.address);
+    const revenue = ltdPrice.add(price);
+    expect(balance).to.equal(revenue);
+  });
+
+  it ("should track revenue earned on a per record basis", async function() {
+    const record = await jukebox.getRecord(cloneAddr__721);
+    expect(record['revenue__721']).to.equal(ltdPrice);
+    expect(record['revenue__1155']).to.equal(price);
   });
 });
