@@ -84,7 +84,8 @@ describe("Jukebox", function () {
   });
 
   it ("should press records", async function() {
-    const pressTx = await jukebox.pressRecord(
+    const [signer, creator, ltdMinter, minter] = await ethers.getSigners();
+    const pressTx = await jukebox.connect(creator).pressRecord(
       name,
       symbol,
       uri,
@@ -137,13 +138,13 @@ describe("Jukebox", function () {
   });
 
   it ("should mint limited edition records", async function() {
-    const [signer] = await ethers.getSigners();
+    const [signer, creator, ltdMinter, minter] = await ethers.getSigners();
     const catalog = await jukebox.getCatalog();
 
     const __721 = new ethers.Contract(catalog[0]['__721'], Record__721.abi, signer);
-    const mintTx__721 = await jukebox.mintRecord(catalog[0]['__721'], { value: ltdPrice });
+    const mintTx__721 = await jukebox.connect(ltdMinter).mintRecord(catalog[0]['__721'], { value: ltdPrice });
     const receipt__721 = await mintTx__721.wait();
-    const balance__721 = parseInt(await __721.balanceOf(signer.address));
+    const balance__721 = parseInt(await __721.balanceOf(ltdMinter.address));
     expect(balance__721).to.equal(1);
 
     // check for an increase in total supply
@@ -152,13 +153,13 @@ describe("Jukebox", function () {
   });
 
   it ("should mint standard issue records", async function() {
-    const [signer] = await ethers.getSigners();
+    const [signer, creator, ltdMinter, minter] = await ethers.getSigners();
     const catalog = await jukebox.getCatalog();
 
     const __1155 = new ethers.Contract(catalog[0]['__1155'], Record__1155.abi, signer);
-    const mintTx__1155 = await jukebox.mintRecord(catalog[0]['__1155'], { value: price });
+    const mintTx__1155 = await jukebox.connect(minter).mintRecord(catalog[0]['__1155'], { value: price });
     const receipt__1155 = await mintTx__1155.wait();
-    const balance__1155 = await __1155.balanceOf(signer.address, 1);
+    const balance__1155 = await __1155.balanceOf(minter.address, 1);
     expect(balance__1155).to.equal(1);
   });
 
@@ -172,5 +173,38 @@ describe("Jukebox", function () {
     const record = await jukebox.getRecord(cloneAddr__721);
     expect(record['revenue__721']).to.equal(ltdPrice);
     expect(record['revenue__1155']).to.equal(price);
+  });
+
+  it ("should distribute revenue to artists, charities, and ltd. minters", async function() {
+    const [signer, creator, ltdMinter, minter] = await ethers.getSigners();
+
+    const total = ltdPrice.add(price);
+
+    const revenue = {};
+    revenue.charity = total.div(100).mul(charityRoyalty);
+    revenue.jukebox = total.div(100).mul(jukeboxRoyalty);
+    revenue.ltdMinter = price.div(100).mul(mintersRoyalty).div(ltdSupply);
+    revenue.creator = total.sub(revenue.charity).sub(revenue.jukebox).sub(revenue.ltdMinter);
+
+    const before = {
+      creator: await ethers.provider.getBalance(creator.address),
+      charity: await ethers.provider.getBalance(charity),
+      ltdMinter: await ethers.provider.getBalance(ltdMinter.address),
+    };
+
+    await jukebox.distributeRevenue([cloneAddr__721]);
+    const record = await jukebox.getRecord(cloneAddr__721);
+
+    const after = {
+      creator: await ethers.provider.getBalance(creator.address),
+      charity: await ethers.provider.getBalance(charity),
+      ltdMinter: await ethers.provider.getBalance(ltdMinter.address),
+    };
+
+    expect(after.creator).to.equal(before.creator.add(revenue.creator));
+    expect(after.charity).to.equal(before.charity.add(revenue.charity));
+    expect(after.ltdMinter).to.equal(before.ltdMinter.add(revenue.ltdMinter));
+    expect(record['revenue__1155']).to.equal(0);
+    expect(record['revenue__721']).to.equal(0);
   });
 });

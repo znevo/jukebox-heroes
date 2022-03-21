@@ -17,11 +17,14 @@ contract Jukebox is Ownable {
 
     Record[] public catalog;
     mapping(address => uint) public recordIndex;
+    mapping(address => address[]) public minters;
 
     struct Record {
         address __721;
         address __1155;
-        address charity;
+        address payable creator;
+        address payable charity;
+        uint ltdSupply;
         uint charityRoyalty;
         uint mintersRoyalty;
         uint jukeboxRoyalty;
@@ -85,7 +88,9 @@ contract Jukebox is Ownable {
         catalog.push(Record({
             __721: address__721,
             __1155: address__1155,
-            charity: charity,
+            creator: payable(msg.sender),
+            charity: payable(charity),
+            ltdSupply: ltdSupply,
             charityRoyalty: charityRoyalty,
             mintersRoyalty: mintersRoyalty,
             jukeboxRoyalty: jukeboxRoyalty,
@@ -110,6 +115,7 @@ contract Jukebox is Ownable {
     function mintRecord(address recordAddr) external payable {
         if ( recordAddr == catalog[recordIndex[recordAddr]].__721 ) {
             catalog[recordIndex[recordAddr]].revenue__721 += msg.value;
+            minters[recordAddr].push(msg.sender);
         } else if ( recordAddr == catalog[recordIndex[recordAddr]].__1155 ) {
             catalog[recordIndex[recordAddr]].revenue__1155 += msg.value;
         } else {
@@ -117,5 +123,52 @@ contract Jukebox is Ownable {
         }
 
         IRecord(recordAddr).mint(msg.sender, msg.value);
+    }
+
+    function distributeRevenue(address[] memory records) external {
+        for (uint i = 0; i < records.length; i++) {
+            address recordAddr = records[i];
+            Record storage record = catalog[recordIndex[recordAddr]];
+
+            // calculate the 721 revenue to artists and charities
+            uint charityRevenue__721 = (record.revenue__721 / 100) * record.charityRoyalty;
+            uint jukeboxRevenue__721 = (record.revenue__721 / 100) * record.jukeboxRoyalty;
+            uint creatorRevenue__721 = record.revenue__721 - charityRevenue__721 - jukeboxRevenue__721;
+
+            // calculate the 1155 revenue to artists and charities
+            uint charityRevenue__1155 = (record.revenue__1155 / 100) * record.charityRoyalty;
+            uint jukeboxRevenue__1155 = (record.revenue__1155 / 100) * record.jukeboxRoyalty;
+            uint creatorRevenue__1155 = record.revenue__1155 - charityRevenue__1155 - jukeboxRevenue__1155;
+
+            // calculate the 1155 revenue to ltd. edition minters
+            address[] memory ltdMinters = minters[record.__721];
+            uint microRevenue = ((record.revenue__1155 / 100) * record.mintersRoyalty) / record.ltdSupply;
+            uint mintersRevenue = microRevenue * ltdMinters.length;
+
+            // calculate total creator revenue
+            uint creatorRevenue = creatorRevenue__721 + creatorRevenue__1155 - mintersRevenue;
+
+            // calculate total charity revenue
+            uint charityRevenue = charityRevenue__721 + charityRevenue__1155;
+
+            // update the balance on the record to reflect the distributions
+            record.revenue__1155 = 0;
+            record.revenue__721 = 0;
+
+            // distribute revenue to creator
+            (bool sentCreator, ) = payable(record.creator).call{value: creatorRevenue}("");
+            require(sentCreator, 'Failed to distribute revenue to creator!');
+
+            // distribute revenue to charity
+            (bool sentCharity, ) = payable(record.charity).call{value: charityRevenue}("");
+            require(sentCharity, 'Failed to distribute revenue to charity!');
+
+            // distribute revenue to individual ltd. minters
+            for ( uint c = 0; c < ltdMinters.length; c++ ) {
+                address payable ltdMinter = payable(ltdMinters[c]);
+                (bool sentMicro, ) = ltdMinter.call{value: microRevenue}("");
+                require(sentMicro, 'Failed to distribute revenue to limited edition minter!');
+            }
+        }
     }
 }
