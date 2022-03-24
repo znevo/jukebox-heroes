@@ -10,7 +10,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    jukeboxAddress: '0xFd88165152376B250F212eA5500af158123a2c21',
+    jukeboxAddress: '0xD21D34753400a696C74a8Cd21d46e4190d7118eD',
     catalog: [],
   },
   getters: {
