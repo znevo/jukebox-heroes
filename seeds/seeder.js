@@ -2,14 +2,28 @@ const hre = require("hardhat");
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 const { create } = require("ipfs-http-client");
-const ipfs = create("https://ipfs.infura.io:5001");
 const records = require("./records.json");
+
+const projectId = process.env.INFURA_ID;
+const projectSecret = process.env.INFURA_SECRET;
+const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+
+const ipfs = create({
+  host: 'ipfs.infura.io',
+  port: 5001,
+  protocol: 'https',
+  headers: {
+    authorization: auth,
+  },
+});
 
 async function main() {
   const jukebox = await hre.ethers.getContractAt("Jukebox", "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0");
+  const provider = new ethers.providers.JsonRpcProvider();
+  const artist = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
   for ( let i = 0; i < records.length; i++ ) {
-    const record = records.reverse()[i];
+    const record = records[i];
 
     const file = {
       path: '/',
@@ -24,7 +38,7 @@ async function main() {
     const { path } = await ipfs.add(file);
     const metadataURI = `https://gateway.ipfs.io/ipfs/${path}`;
 
-    const pressTx = await jukebox.pressRecord(
+    const pressTx = await jukebox.connect(artist).pressRecord(
       record.name,
       record.symbol,
       metadataURI,

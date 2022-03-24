@@ -8,7 +8,12 @@ import './css/main.scss';
 
 Vue.config.productionTip = false
 
+import Flash from './library/flash.js';
+Vue.prototype.$flash = new Flash();
+window.flash = Vue.prototype.$flash;
+
 import Amplitude from 'amplitudejs';
+window.Amplitude = Amplitude;
 Vue.prototype.$amplitude = Amplitude;
 
 import Metamask from './library/MetaMask';

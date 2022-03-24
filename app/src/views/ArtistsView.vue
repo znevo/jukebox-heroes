@@ -15,19 +15,36 @@
                   <h2 class="subtitle is-size-6 has-text-dark">Withdraw your revenue anytime!</h2>
                     <table width="100%" class="table">
                       <tr>
-                         <td class="is-size-6">Lorem</td>
-                         <td align="right" class="is-size-6">0</td>
+                         <td class="is-size-6">NFTs Launched</td>
+                         <td align="right" class="is-size-6">{{ myNFTs.length }}</td>
                       </tr>
                       <tr>
-                         <td class="is-size-6">Ipsum</td>
-                         <td align="right" class="is-size-6">0</td>
+                         <td class="is-size-6">Revenue</td>
+                         <td align="right" class="is-size-6">{{ creatorRevenue }} <i class="fa-brands fa-ethereum"></i></td>
                       </tr>
                       <tr>
-                         <td class="is-size-6">Dolor</td>
-                         <td align="right" class="is-size-6">0</td>
+                         <td class="is-size-6">Charity</td>
+                         <td align="right" class="is-size-6">{{ charityRevenue }} <i class="fa-brands fa-ethereum"></i></td>
+                      </tr>
+                      <tr>
+                         <td class="is-size-6">Jukebox</td>
+                         <td align="right" class="is-size-6">{{ jukeboxRevenue }} <i class="fa-brands fa-ethereum"></i></td>
+                      </tr>
+                      <tr>
+                         <td class="is-size-6">Super Fans</td>
+                         <td align="right" class="is-size-6">{{ mintersRevenue }} <i class="fa-brands fa-ethereum"></i></td>
+                      </tr>
+                      <tr>
+                         <td class="is-size-6">Total Revenue</td>
+                         <td align="right" class="is-size-6">{{ totalRevenue }} <i class="fa-brands fa-ethereum"></i></td>
                       </tr>
                     </table>
-                   <div class="control"><button class="button is-rounded is-gradient-button is-fullwidth is-normal is-medium mt-5"> Withdraw </button></div>
+                  <div class="control">
+                    <button class="button is-rounded is-gradient-button is-fullwidth is-normal is-medium mt-5"
+                      @click="withdraw()">
+                      Withdraw
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -35,6 +52,7 @@
             <div class="column">
 
               <div class="box" style="border-radius: 24px;">
+                <a href="" class="button is-small is-pulled-right is-rounded is-light" @click.prevent="demo()">demo</a>
                 <h1 class="title is-size-4 has-text-dark">Launch Your NFT</h1>
                 <h1 class="subtitle is-size-6 has-text-dark">Add a song to raise funds and become a Jukebox Superhero!</h1>
 
@@ -167,7 +185,7 @@
                       <div class="control">
                         <div class="select is-rounded is-normal is-fullwidth">
                           <select v-model="form.mintersRoyalty">
-                            <option selected disabled value="default">Ltd. Minters</option>
+                            <option selected disabled value="default">Super Fans</option>
                             <option value=5>5%</option>
                             <option value=4>4%</option>
                             <option value=3>3%</option>
@@ -284,7 +302,63 @@ export default {
       }
     }
   },
+  computed: {
+    myNFTs() {
+      return this.$store.state.catalog.filter(record => record.creator == this.$metamask.user);
+    },
+    totalRevenue() {
+      const total = this.myNFTs.reduce((sum, record) => {
+        return sum + parseInt(record.revenue__721) + parseInt(record.revenue__1155);
+      }, 0);
+      return ethers.utils.formatEther(total.toString());
+    },
+    creatorRevenue() {
+      const revenue = ethers.utils.parseEther(this.totalRevenue)
+        - ethers.utils.parseEther(this.charityRevenue)
+        - ethers.utils.parseEther(this.jukeboxRevenue)
+        - ethers.utils.parseEther(this.mintersRevenue);
+      return ethers.utils.formatEther(revenue.toString());
+    },
+    charityRevenue() {
+      const charity = this.myNFTs.reduce((sum, record) => {
+        const revenue = parseInt(record.revenue__721) + parseInt(record.revenue__1155);
+        return sum + ((revenue / 100) * record.charityRoyalty);
+      }, 0);
+      return ethers.utils.formatEther(charity.toString());
+    },
+    jukeboxRevenue() {
+      const jukebox = this.myNFTs.reduce((sum, record) => {
+        const revenue = parseInt(record.revenue__721) + parseInt(record.revenue__1155);
+        return sum + ((revenue / 100) * record.jukeboxRoyalty);
+      }, 0);
+      return ethers.utils.formatEther(jukebox.toString());
+
+    },
+    mintersRevenue() {
+      const minters = this.myNFTs.reduce((sum, record) => {
+        const revenue = parseInt(record.revenue__1155);
+        const mintersRoyalty = (revenue / 100) * record.mintersRoyalty
+        const microRoyalty = mintersRoyalty / record.ltdSupply;
+        const microRevenue = microRoyalty * record.ltdMinters;
+        return sum + microRevenue;
+      }, 0);
+      return ethers.utils.formatEther(minters.toString());
+    },
+  },
   methods: {
+    demo() {
+        this.form.name = 'Astral Groove';
+        this.form.description = 'Intergalactic Jam';
+        this.form.tokenName = 'Cosmic';
+        this.form.tokenSymbol = 'COSMIC';
+        this.form.ltdSupply = 100;
+        this.form.ltdPrice = 0.1;
+        this.form.price = 0.0005;
+        this.form.charity = '0x2838b365D1646D693Af11A81Ac644809C4D97a16';
+        this.form.charityRoyalty = 40;
+        this.form.mintersRoyalty = 5;
+        this.form.jukeboxRoyalty = 5;
+    },
     async launch() {
       await this.uploadMetadataFile();
 
@@ -305,10 +379,37 @@ export default {
         this.form.jukeboxRoyalty
       );
 
+      this.$flash.wait('Your transaction has been submitted and is awaiting confirmation!');
       const receipt = await pressTx.wait();
+
+      this.$flash.msg('Your NFT has been launched and is now available for minting in the jukebox!');
       const [recordAddr__721, recordAddr__1155] = receipt.events.find(x => x.event === 'RecordPressed').args;
       console.log("Jukebox pressed a Record__721 clone to:", recordAddr__721);
       console.log("Jukebox pressed a Record__1155 clone to:", recordAddr__1155);
+    },
+    async withdraw() {
+      const provider = new ethers.providers.Web3Provider(this.$metamask.provider);
+      const signer = await provider.getSigner();
+      const jukebox = new ethers.Contract(this.$store.state.jukeboxAddress, Jukebox.abi, signer);
+
+      const records = this.myNFTs.map(record => record.__721);
+
+      const withdrawTx = await jukebox.distributeRevenue(records);
+      this.$flash.wait('Your transaction has been submitted and is awaiting confirmation!');
+
+      const receipt = await withdrawTx.wait();
+      this.$flash.msg('Your revenue has been distrbuted and the profits transferred to your wallet!');
+      console.log(receipt);
+
+      // todo: fetch the real data rather than locally updating
+      const catalog = this.$store.state.catalog.map(record => {
+        if ( record.creator == this.$metamask.user ) {
+          record.revenue__721 = 0;
+          record.revenue__1155 = 0;
+        }
+        return record;
+      });
+      this.$store.commit('setCatalog', catalog);
     },
     uploadAudioFile(e) {
       if (e.target.files.length > 0) {

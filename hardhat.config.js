@@ -9,6 +9,12 @@ module.exports = {
     artifacts: "./app/artifacts",
   },
   networks: {
+    hardhat: {
+      mining: {
+        auto: true,
+        interval: 2000
+      }
+    },
     rinkeby: {
       url: process.env.RINKEBY_URL,
       accounts: [process.env.PRIVATE_KEY]
@@ -20,6 +26,7 @@ module.exports = {
   gasReporter: {
     currency: 'USD',
     gasPrice: 40,
-    coinmarketcap: process.env.COINMARKETCAP_KEY
+    coinmarketcap: process.env.COINMARKETCAP_KEY,
+    enabled: false
   }
 };

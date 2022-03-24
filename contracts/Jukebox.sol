@@ -25,6 +25,7 @@ contract Jukebox is Ownable {
         address payable creator;
         address payable charity;
         uint ltdSupply;
+        uint ltdMinters;
         uint charityRoyalty;
         uint mintersRoyalty;
         uint jukeboxRoyalty;
@@ -91,6 +92,7 @@ contract Jukebox is Ownable {
             creator: payable(msg.sender),
             charity: payable(charity),
             ltdSupply: ltdSupply,
+            ltdMinters: 0,
             charityRoyalty: charityRoyalty,
             mintersRoyalty: mintersRoyalty,
             jukeboxRoyalty: jukeboxRoyalty,
@@ -115,6 +117,7 @@ contract Jukebox is Ownable {
     function mintRecord(address recordAddr) external payable {
         if ( recordAddr == catalog[recordIndex[recordAddr]].__721 ) {
             catalog[recordIndex[recordAddr]].revenue__721 += msg.value;
+            catalog[recordIndex[recordAddr]].ltdMinters += 1;
             minters[recordAddr].push(msg.sender);
         } else if ( recordAddr == catalog[recordIndex[recordAddr]].__1155 ) {
             catalog[recordIndex[recordAddr]].revenue__1155 += msg.value;

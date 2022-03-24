@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation-tabs">
+  <div class="navigation-tabs is-hidden">
     <div class="tabs is-toggle is-toggle-rounded is-centered">
       <ul>
         <li :class="$route.name === 'my-nfts' ? 'is-active' : ''">

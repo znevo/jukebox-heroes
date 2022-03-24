@@ -5,12 +5,14 @@ import HomeView from '../views/HomeView.vue'
 Vue.use(VueRouter)
 
 const auth = (to, from, next) => {
+  window.Amplitude.stop();
   (window.metamask.ready('rinkeby') || window.metamask.ready('hardhat'))
     ? next()
     : next('/');
 }
 
 const guest = (to, from, next) => {
+  window.Amplitude.stop();
   (window.metamask.ready('rinkeby') || window.metamask.ready('hardhat'))
     ? next('/jukebox')
     : next();

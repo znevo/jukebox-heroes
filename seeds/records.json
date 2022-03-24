@@ -1,13 +1,13 @@
 [
   {
     "metadata": {
-        "name": "Terrain",
-        "description": "Key",
-        "animation_url": "https://521dimensions.com/songs/Terrain-pglost.mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/key.jpg"
+      "name": "One More Funny Thing",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmNTobQQdmXjcA5u41VVGrsypdDd5rKiBS8hH4tjP4fvm5",
+      "image": "https://gateway.ipfs.io/ipfs/QmWJoeoXSNQQE1vXYnCMRQD58fYfAXp1z7odT4BYTivcqd"
     },
-    "name": "pg.lost",
-    "symbol": "PGLOST",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,
@@ -18,13 +18,13 @@
   },
   {
     "metadata": {
-        "name": "Vorel",
-        "description": "Guidance",
-        "animation_url": "https://521dimensions.com/songs/Vorel-RussianCircles.mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/guidance.jpg"
+      "name": "One Day As A Dog",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmVtitSbhSxPaZ5GfKKDxXCFGWavZurD3aSB4c4buPPse4",
+      "image": "https://gateway.ipfs.io/ipfs/QmbW5oDAznQGa4TFpKED7tTc8hmgoYxyd8D8T2HNzJtLPC"
     },
-    "name": "Russian Circles",
-    "symbol": "RUSSIANCIRCLES",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,
@@ -35,13 +35,13 @@
   },
   {
     "metadata": {
-        "name": "Intro / Sweet Glory",
-        "description": "Die Digital",
-        "animation_url": "https://521dimensions.com/songs/IntroSweetGlory-Jimkata.mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/die-digital.jpg"
+      "name": "A Tint Of Destiny",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmZyBuvTQJXTq1dcYbxHGtwM26m1kzfK8grXMgSG4wYWbC",
+      "image": "https://gateway.ipfs.io/ipfs/QmW6Jse6mXo86WvbgpD6jpboU7RTaWvmoxm9f8Yz8W3mb4"
     },
-    "name": "Jimkata",
-    "symbol": "JIMKATA",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,
@@ -52,13 +52,13 @@
   },
   {
     "metadata": {
-        "name": "Offcut #6",
-        "description": "We Are But Hunks of Wood Remixes",
-        "animation_url": "https://521dimensions.com/songs/Offcut6-LittlePeople.mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/we-are-but-hunks-of-wood.jpg"
+      "name": "Cherry Blossom",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmVVbD9wP4McK1qsHqvx19Bxc5FSzbzgcMfv9hP2hRyCJ4",
+      "image": "https://gateway.ipfs.io/ipfs/QmQg79U59sWtgmA2373qd5oXBGduhSUXzPLzfvngWBZmcQ"
     },
-    "name": "Little People",
-    "symbol": "LITTLEPEOPLE",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,
@@ -69,13 +69,13 @@
   },
   {
     "metadata": {
-        "name": "Dusk To Dawn",
-        "description": "Dusk To Dawn",
-        "animation_url": "https://521dimensions.com/songs/DuskToDawn-Emancipator.mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/from-dusk-to-dawn.jpg"
+      "name": "New Mutation Boogie",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmVk7cww4RfMKizG3NDDKgDzBPKKtJJjyc5C8MPDjfdWc3",
+      "image": "https://gateway.ipfs.io/ipfs/QmTvRdQRoQX5ghnDwbS2JMwPJLumuK9ZFhZXHmEgSpfEqs"
     },
-    "name": "Emancipator",
-    "symbol": "EMANCIPATOR",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,
@@ -86,13 +86,13 @@
   },
   {
     "metadata": {
-        "name": "Anthem",
-        "description": "Soon It Will Be Cold Enough",
-        "animation_url": "https://521dimensions.com/songs/Anthem-Emancipator.mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/soon-it-will-be-cold-enough.jpg"
+      "name": "Disturbing Wildlife",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmdRfjMmZv2Sy6zZ4m8obdxQR29ZhefXMd49EAbgBTg7a1",
+      "image": "https://gateway.ipfs.io/ipfs/QmWUohodqfmWLMJHP4GAw2FcetV2oJncpeNwQvzRzSw6Sk"
     },
-    "name": "Emancipator",
-    "symbol": "EMANCIPATOR",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,
@@ -103,13 +103,13 @@
   },
   {
     "metadata": {
-        "name": "Risin' High (feat Raashan)",
-        "description": "We Are to Answer",
-        "animation_url": "https://521dimensions.com/songs/Ancient Astronauts - Risin' High (feat Raashan Ahmad).mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/we-are-to-answer.jpg"
+      "name": "Act One",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmURtMh5GD5eptoVED39ZKx7CvKA6tJpotzBe7F1FDD1Wy",
+      "image": "https://gateway.ipfs.io/ipfs/QmYSm2eZQCE9tZxJXf1GHeTMt87Np3TqocPDzNgJBrbrwD"
     },
-    "name": "Ancient Astronauts",
-    "symbol": "ANCIENTASTRONAUTS",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,
@@ -120,13 +120,13 @@
   },
   {
     "metadata": {
-        "name": "The Gun",
-        "description": "Ask The Dust",
-        "animation_url": "https://521dimensions.com/songs/08 The Gun.mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/ask-the-dust.jpg"
+      "name": "Bestial Western",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmNfx9w7tUaUrcCX5AaKPuzBRsFHxMPV6EbYvdgxWSAqo4",
+      "image": "https://gateway.ipfs.io/ipfs/QmUMDfKfvW9vhmTKNNGcvqV2ue3GWo6DAtcxBfup5obzYv"
     },
-    "name": "Lorn",
-    "symbol": "LORN",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,
@@ -137,13 +137,13 @@
   },
   {
     "metadata": {
-        "name": "Anvil",
-        "description": "Anvil",
-        "animation_url": "https://521dimensions.com/songs/LORN - ANVIL.mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/anvil.jpg"
+      "name": "You and Your Arrow",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/Qmcb8rjCb9iB8FMCRQaQgJd5dxwRPJpbjvJrhyQA78qB5v",
+      "image": "https://gateway.ipfs.io/ipfs/QmRJzoaTpVJU4rRz13ZMZJzzeWqv87bWbKVnePUzXCetCx"
     },
-    "name": "Lorn",
-    "symbol": "LORN",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,
@@ -154,13 +154,13 @@
   },
   {
     "metadata": {
-        "name": "I Came Running",
-        "description": "We Are to Answer",
-        "animation_url": "https://521dimensions.com/songs/ICameRunning-AncientAstronauts.mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/we-are-to-answer.jpg"
+      "name": "Heavenly All",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmV4PF4Rum2TKc9AKCyRqMjc5GbpuS64zfuYBeiTEF4g7Z",
+      "image": "https://gateway.ipfs.io/ipfs/QmRvLTHTtbf23dqKV7Nb85rHKkNUeoPGj57jhyt7gYeJeE"
     },
-    "name": "Ancient Astronauts",
-    "symbol": "ANCIENTASTRONAUTS",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,
@@ -171,13 +171,30 @@
   },
   {
     "metadata": {
-        "name": "First Snow",
-        "description": "Soon It Will Be Cold Enough",
-        "animation_url": "https://521dimensions.com/songs/FirstSnow-Emancipator.mp3",
-        "image": "https://521dimensions.com/img/open-source/amplitudejs/album-art/soon-it-will-be-cold-enough.jpg"
+      "name": "Elaine Serene",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmeBb59ATBDGpaarsnHWKHky5856sfkmv4DNxpXAqd6U3d",
+      "image": "https://gateway.ipfs.io/ipfs/QmNTEYXB9hGKNzj4j6iwVrffoEimd8WBKat2cRcSih5Q9s"
     },
-    "name": "Emancipator",
-    "symbol": "EMANCIPATOR",
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
+    "ltdSupply": 100,
+    "ltdPrice": 0.1,
+    "price": 0.0005,
+    "charity": "0x2838b365D1646D693Af11A81Ac644809C4D97a16",
+    "charityRoyalty": 40,
+    "mintersRoyalty": 5,
+    "jukeboxRoyalty": 5
+  },
+  {
+    "metadata": {
+      "name": "Clever Devil",
+      "description": "Invisible Familiars",
+      "animation_url": "https://gateway.ipfs.io/ipfs/QmQ3vM8m7D8pzYBY88RJYmckdjYJFfaAZgyXBKvakqz6j5",
+      "image": "https://gateway.ipfs.io/ipfs/QmUtCS1uGVYWKvbhgWQA4y7mqeGfhw577RHJdw2Dr6xWjk"
+    },
+    "name": "Invisible Familiars",
+    "symbol": "FAMILIARS",
     "ltdSupply": 100,
     "ltdPrice": 0.1,
     "price": 0.0005,

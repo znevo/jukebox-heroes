@@ -192,7 +192,7 @@ div#white-player-center div.time-progress div#progress-container input[type=rang
     width: 100%;
     margin: 7.5px 0;
     position: absolute;
-    z-index: 9999;
+    z-index: 100;
     top: -7px;
     height: 20px;
     cursor: pointer;
@@ -392,7 +392,7 @@ div#white-player-playlist-container {
     left: 0;
     bottom: 0;
     background-color: white;
-    z-index: 9999;
+    z-index: 100;
     display: none;
     border-radius: 8px;
 }

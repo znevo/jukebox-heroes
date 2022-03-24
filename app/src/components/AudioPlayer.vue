@@ -108,11 +108,11 @@ export default {
       initialized: true,
       playlist: [
         {
-          "name": "Terrain",
-          "artist": "pg.lost",
-          "album": "Key",
-          "url": "https://521dimensions.com/songs/Terrain-pglost.mp3",
-          "cover_art_url": "https://521dimensions.com/img/open-source/amplitudejs/album-art/key.jpg",
+          "name": "New Mutation Boogie",
+          "artist": "Invisible Familiars",
+          "album": "Disturbing Wildlife",
+          "url": "https://gateway.ipfs.io/ipfs/QmVk7cww4RfMKizG3NDDKgDzBPKKtJJjyc5C8MPDjfdWc3",
+          "cover_art_url": "https://gateway.ipfs.io/ipfs/QmTvRdQRoQX5ghnDwbS2JMwPJLumuK9ZFhZXHmEgSpfEqs",
         }
       ],
     }
@@ -132,7 +132,7 @@ export default {
       this.$amplitude.addSong(song);
       this.$nextTick(() => {
         this.$amplitude.bindNewElements();
-        // this.$amplitude.getPlayerState() != "playing" &&
+        this.$amplitude.getPlayerState() != "playing" &&
         this.$amplitude.playSongAtIndex(this.playlist.length-1);
       });
     },

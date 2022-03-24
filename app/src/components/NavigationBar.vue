@@ -19,7 +19,7 @@
             <router-link to="/jukebox">Jukebox</router-link>
           </div>
           <div class="navbar-item">
-            <router-link to="/my-nfts" :class="$route.name == 'artists' ? 'router-link-exact-active' : ''">My NFTs</router-link>
+            <router-link to="/artists" :class="$route.name == 'artists' ? 'router-link-exact-active' : ''">Artists</router-link>
           </div>
           <div class="navbar-item is-hidden">
             <router-link to="/buy-song" class="button is-rounded is-white is-outlined is-mixed-button" @click.native="$event.target.blur()">Buy SONG</router-link>

@@ -4,8 +4,9 @@ pragma solidity ^0.8.4;
 import "./ERC721Enumerable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Record__721 is ERC721Enumerable, Initializable {
+contract Record__721 is ERC721Enumerable, Initializable, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
@@ -19,9 +20,10 @@ contract Record__721 is ERC721Enumerable, Initializable {
         _uri = uri;
         _maxSupply = maxSupply;
         _price = price;
+        _transferOwnership(_msgSender());
     }
 
-    function mint(address to, uint price) public returns (uint256) {
+    function mint(address to, uint price) public onlyOwner returns (uint256) {
         require(price >= _price, 'The minimum price was not met!');
 
         _tokenIds.increment();
