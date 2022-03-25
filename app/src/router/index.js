@@ -6,14 +6,14 @@ Vue.use(VueRouter)
 
 const auth = (to, from, next) => {
   window.Amplitude.stop();
-  (window.metamask.ready('rinkeby') || window.metamask.ready('hardhat'))
+  window.metamask.ready('rinkeby')
     ? next()
     : next('/');
 }
 
 const guest = (to, from, next) => {
   window.Amplitude.stop();
-  (window.metamask.ready('rinkeby') || window.metamask.ready('hardhat'))
+  window.metamask.ready('rinkeby')
     ? next('/jukebox')
     : next();
 }

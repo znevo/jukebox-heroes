@@ -24,7 +24,7 @@
               <button class="button is-rounded is-light is-outlined is-medium is-hero-button" @click="connect">Rock On</button>
             </template>
 
-            <template v-if="$metamask.user && ! ($metamask.ready('rinkeby') || $metamask.ready('hardhat'))">
+            <template v-if="$metamask.user && ! $metamask.ready('rinkeby')">
               <button class="button is-rounded is-light is-outlined is-medium is-hero-button" @click="chain">Connect To Rinkeby</button>
             </template>
           </div>
